@@ -233,18 +233,42 @@ export const StoryPage = () => {
         )}
 
         {showCaption && extraBubble && (
-          <div className="subtitle-container" style={{ bottom: '0%', left: '50%', transform: 'translateX(-50%)', zIndex: 101 }}>
-            <div className="extra-cloud">
-              <p>
-                {extraBubble.words.map((word, index) => (
-                  <span key={index} className={`word-span ${narrationHighlight && currentTime >= word.start && currentTime < word.end ? 'active-word' : ''}`}>
-                    {word.text}{' '}
-                  </span>
-                ))}
-              </p>
-            </div>
-          </div>
-        )}
+  <div
+    className="subtitle-container"
+    style={{
+      bottom: '0%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      zIndex: 101
+    }}
+  >
+    <div className="extra-cloud">
+      <p
+        style={{
+          fontSize: extraBubble.fontSize
+            ? `${extraBubble.fontSize}px`
+            : "1.6rem"
+        }}
+      >
+        {extraBubble.words.map((word, index) => (
+          <span
+            key={index}
+            className={`word-span ${
+              narrationHighlight &&
+              currentTime >= word.start &&
+              currentTime < word.end
+                ? 'active-word'
+                : ''
+            }`}
+          >
+            {word.text}{' '}
+          </span>
+        ))}
+      </p>
+    </div>
+  </div>
+)}
+
 
         <div className="video-overlay" />
         <div className="controls-container">

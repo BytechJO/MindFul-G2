@@ -364,19 +364,19 @@ export const lessonsData = {
                     {
                         id: 'Q1',
                         text: "What was Sue worried about?",
-                        options: ["How to spell ‘apple’.", "The teacher getting angry.", "Playing outside."],
+                        options: ["How to spell ‘apple’", "The teacher getting angry", "Playing outside"],
                         correctAnswer: "0"
                     },
                     {
                         id: 'Q2',
                         text: "Who helped Sue to spell?",
-                        options: ["The teacher.", "Her parents.", "Her classmate."],
+                        options: ["The teacher", "Her parents", "Her classmate"],
                         correctAnswer: "0"
                     },
                     {
                         id: 'Q3',
                         text: "How did Sue feel at the end of the story?",
-                        options: ["Worried.", "Angry.", "Happy."],
+                        options: ["Worried", "Angry", "Happy"],
                         correctAnswer: "2"
                     }
                 ]
@@ -687,7 +687,7 @@ export const lessonsData = {
                     {
                         id: 'Q1',
                         text: "What was Henry doing?",
-                        options: ["Taking a maths test.", "Drawing.", "Eating lunch."],
+                        options: ["Taking a maths test", "Drawing", "Eating lunch"],
                         correctAnswer: "0"
                     },
                     {
@@ -1083,7 +1083,7 @@ export const lessonsData = {
                     {
                         id: 'Q1',
                         text: "What was the lesson the teacher taught the girls?",
-                        options: ["Traffic rules.", "Classroom rules.", "Playground rules."],
+                        options: ["Traffic rules", "Classroom rules", "Playground rules"],
                         correctAnswer: "0"
                     },
                     {
@@ -1095,7 +1095,7 @@ export const lessonsData = {
                     {
                         id: 'Q3',
                         text: "What is a pedestrian?",
-                        options: ["A young cat.", "A person walking.", "A person driving."],
+                        options: ["A young cat", "A person walking", "A person driving"],
                         correctAnswer: "1"
                     }
                 ]
@@ -1884,13 +1884,13 @@ export const lessonsData = {
                     {
                         id: 'Q1',
                         text: "What were Leo and Zack excited about at the  beginning of the story?",
-                        options: ["The weather.", "Leo’s new bike.", "Zack’s new bike."],
+                        options: ["The weather", "Leo’s new bike", "Zack’s new bike"],
                         correctAnswer: "1"
                     },
                     {
                         id: 'Q2',
                         text: "Who wanted to race?",
-                        options: ["Zack.", "Tom.", "Leo."],
+                        options: ["Zack", "Tom", "Leo"],
                         correctAnswer: "0"
                     },
                     {
@@ -2489,7 +2489,7 @@ export const lessonsData = {
                 },
             ],
             interactiveTask: {
-                videoIndex: 3,
+                videoIndex: 4,
                 instruction: [
                     "Highlight how Emma felt after helping",
                     "her parents."
@@ -2502,13 +2502,13 @@ export const lessonsData = {
                     {
                         id: 'Q1',
                         text: "How did Emma feel when her parents asked her to help clean?",
-                        options: ["Happy.", "Sad.", "Mad."],
+                        options: ["Happy", "Sad", "Mad"],
                         correctAnswer: "2"
                     },
                     {
                         id: 'Q2',
                         text: "Which room did her parents ask Emma to help  clean?",
-                        options: ["Kitchen.", "Bedroom.", "Living room."],
+                        options: ["Kitchen", "Bedroom", "Living room"],
                         correctAnswer: "2"
                     },
                     {
@@ -2598,7 +2598,6 @@ export const lessonsData = {
                                 { text: "with", start: 11.6, end: 12.0 },
                                 { text: "our", start: 12.0, end: 12.4 },
                                 { text: "words.", start: 12.4, end: 12.8 },
-
                                 { text: "Say", start: 12.8, end: 13.2 },
                                 { text: "things", start: 13.2, end: 13.6 },
                                 { text: "that", start: 13.6, end: 14.0 },
@@ -2611,7 +2610,7 @@ export const lessonsData = {
                                 { text: "okay’,", start: 16.4, end: 16.8 },
                                 { text: "and", start: 16.8, end: 17.2 },
                                 { text: "‘Try", start: 17.2, end: 17.6 },
-                                { text: "again’", start: 17.6, end: 18.0 },
+                                { text: "again’.", start: 17.6, end: 18.0 },
                             ],
                         },
                     ],
@@ -2709,6 +2708,7 @@ export const lessonsData = {
                     videoIndex: 1,
                     start: 5.1,
                     end: 10.6,
+                    fontSize: 30,
                     words: [
                         { text: "Sid", start: 4.7, end: 5 },
                         { text: "is", start: 5, end: 5.2 },
@@ -2853,7 +2853,7 @@ export const lessonsData = {
                     {
                         id: 'Q2',
                         text: "Who told Sid he should encourage others?",
-                        options: ["His mum.", "His sister.", "His brother."],
+                        options: ["His mum", "His sister", "His brother"],
                         correctAnswer: "2"
                     },
                     {

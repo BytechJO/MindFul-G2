@@ -126,7 +126,6 @@
 
 .selected-word {
   font-style: italic;
-  font-weight: bolder;
   font-family: "Patrick Hand", cursive;
   position: relative;
   z-index: 1;

@@ -27,24 +27,19 @@ To get started with the project, please follow the steps below.
     ```bash
     git clone https://github.com/BytechJO/MindFul-G2.git
     ```
-
 2.  **Navigate to the project directory:**
     ```bash
     cd MindFul-G2
     ```
-
 3.  **Install dependencies:**
     ```bash
     npm install
     ```
-
 4.  **Run the development server:**
     ```bash
     npm run dev
     ```
-
 5.  Open your browser and navigate to `http://localhost:5173` (or the port shown in your terminal ). [12]
-
 
 ## 🤝 How to Contribute
 
