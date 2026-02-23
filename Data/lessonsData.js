@@ -2839,7 +2839,7 @@ export const lessonsData = {
                 instruction: [
                     "Highlight how Sid encouraged Bob."
                 ],
-                correctWords: ["its", "okay", "bob", "you", "tried"],
+                correctWords: ["it’s", "okay", "bob", "you", "tried"],
             },
             quiz: {
                 image: u3l2_Q1,

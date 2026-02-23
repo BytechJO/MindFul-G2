@@ -1162,7 +1162,7 @@ html {
 }
 
 .word-span.active-word {
-  font-weight: bold;
+  transform: scale(1.1);
 }
 
 /* الكلمة المحددة (highlighted) */
