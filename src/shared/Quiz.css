@@ -530,7 +530,6 @@
   }
 
   #submitBtn {
-    /* left: 65% !important; */
     top: 62%;
     width: clamp(70px, 30vw, 120px);
     height: clamp(25px, 6vw, 30px);
@@ -645,3 +644,14 @@
   }
 }
 
+@media (width: 1024px) and (height: 768px)
+{
+  .skip-btn,
+  .try-btn {
+    margin-left: 25px;
+    margin-bottom: 40px;
+  }
+  #submitBtn{
+    margin-bottom: 40px;
+  }
+}
