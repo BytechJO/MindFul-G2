@@ -196,7 +196,7 @@
 
 .instruction-banner {
   position: absolute;
-  top: 77%;
+  top: 69%;
   left: 0%;
   transform: translateX(-50%) scale(0);
   background-color: #dfeaf6;
@@ -209,7 +209,7 @@
   border-radius: clamp(4rem, 15vw, 4rem);
   border-bottom-left-radius: clamp(0rem, 0vw, 0rem);
   border-bottom-right-radius: clamp(0rem, 0vw, 0rem);
-  height: clamp(6rem, 20vw, 9.375rem);
+  height: clamp(6rem, 20vw, 18.375rem);
   width: clamp(20rem, 80vw, 60rem);
 }
 
