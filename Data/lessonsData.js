@@ -140,17 +140,17 @@ export const lessonsData = {
                 { text: "I", start: 3.0, end: 3.3 },
                 { text: "don’t", start: 3.34, end: 3.56 },
                 { text: "know", start: 3.62, end: 3.8 },
-                { text: "how", start: 3.82, end: 4.02 },
-                { text: "to", start: 4.02, end: 4.12 },
+                { text: "how", start: 3.82, end: 4.00 },
+                { text: "to", start: 4.00, end: 4.12 },
                 { text: "spell", start: 4.2, end: 4.54 },
                 { text: "‘apple’.", start: 4.54, end: 4.88 },
               ],
             },
             {
-              start: 6.5,
+              start: 5.5,
               end: 8.04,
               words: [
-                { text: "I don’t", start: 6.58, end: 6.68 },
+                { text: "I don’t", start: 6.00, end: 6.68 },
                 { text: "want", start: 6.68, end: 6.96 },
                 { text: "to make", start: 6.67, end: 7.14 },
                 { text: "a mistake.", start: 7.18, end: 8.0 },
@@ -163,7 +163,7 @@ export const lessonsData = {
                 { text: "It", start: 9.68, end: 9.78 },
                 { text: "is", start: 9.82, end: 9.94 },
                 { text: "okay", start: 10.04, end: 10.38 },
-                { text: "make", start: 10.48, end: 10.67 },
+                { text: "make", start: 10.38, end: 10.67 },
                 { text: "mistakes,", start: 10.78, end: 11.34 },
                 { text: "but", start: 11.47, end: 11.82 },
                 { text: "it", start: 11.84, end: 11.92 },
@@ -528,8 +528,8 @@ export const lessonsData = {
             { text: "about", start: 0.66, end: 0.88 },
             { text: "how", start: 0.9, end: 1.08 },
             // { text: "he", start: 1.08, end: 1.18 },
-            { text: "he can", start: 1.08, end: 1.34 },
-            { text: "get", start: 1.34, end: 1.46 },
+            { text: "he can", start: 1.08, end: 1.30 },
+            { text: "get", start: 1.30, end: 1.46 },
             // { text: "his", start: 1.46, end: 1.6 },
             { text: "his test", start: 1.46, end: 1.88 },
             { text: "finished", start: 1.9, end: 2.24 },
@@ -594,7 +594,7 @@ export const lessonsData = {
           start: 5.7,
           end: 7.5,
           words: [
-            { text: "What", start: 5.86, end: 5.98 },
+            { text: "What", start: 5.7, end: 5.98 },
             { text: "will", start: 5.98, end: 6.12 },
             { text: "Henry", start: 6.12, end: 6.46 },
             { text: "do?", start: 6.48, end: 6.74 },
@@ -606,8 +606,8 @@ export const lessonsData = {
           end: 12.5,
           words: [
             { text: "Henry", start: 8.5, end: 8.86 },
-            { text: "remembers", start: 8.9, end: 9.34 },
-            { text: "that", start: 9.34, end: 9.5 },
+            { text: "remembers", start: 8.9, end: 9.28 },
+            { text: "that", start: 9.28, end: 9.5 },
             { text: "if", start: 9.5, end: 9.66 },
             { text: "he", start: 9.66, end: 9.82 },
             { text: "copies,", start: 9.82, end: 10.3 },
@@ -624,7 +624,7 @@ export const lessonsData = {
           end: 17.0,
           words: [
             { text: "and", start: 12.5, end: 12.94 },
-            { text: "the", start: 12.94, end: 13.06 },
+            { text: "the", start: 12.90, end: 13.06 },
             { text: "teacher", start: 13.06, end: 13.4 },
             { text: "will", start: 13.4, end: 13.62 },
             { text: "not", start: 13.62, end: 13.84 },
@@ -657,9 +657,9 @@ export const lessonsData = {
           start: 4.0,
           end: 5.3,
           words: [
-            { text: "He", start: 4.24, end: 4.42 },
+            { text: "He", start: 4.0, end: 4.42 },
             { text: "works", start: 4.42, end: 4.74 },
-            { text: "hard", start: 4.47, end: 5.34 },
+            { text: "hard", start: 4.74, end: 5.34 },
           ],
         },
         {
@@ -668,9 +668,9 @@ export const lessonsData = {
           end: 7.9,
           words: [
             { text: "and", start: 5.38, end: 5.56 },
-            { text: "finishes", start: 5.56, end: 5.94 },
-            { text: "the", start: 5.96, end: 6.06 },
-            { text: "test", start: 6.06, end: 6.36 },
+            { text: "finishes", start: 5.56, end: 5.90 },
+            { text: "the", start: 5.90, end: 6.09 },
+            { text: "test", start: 6.09, end: 6.36 },
             { text: "on", start: 6.36, end: 6.6 },
             { text: "time.", start: 6.6, end: 6.92 },
           ],
@@ -837,7 +837,7 @@ export const lessonsData = {
               words: [
                 { text: "That’s", start: 12.32, end: 12.6 },
                 { text: "right,", start: 12.6, end: 12.84 },
-                { text: "Beth.", start: 18.84, end: 13.2 },
+                { text: "Beth.", start: 12.84, end: 13.2 },
               ],
             },
 
@@ -845,7 +845,7 @@ export const lessonsData = {
               start: 13.5,
               end: 20.0,
               words: [
-                { text: "But", start: 133.6, end: 13.72 },
+                { text: "But", start: 13.6, end: 13.72 },
                 { text: "we", start: 13.72, end: 13.86 },
                 { text: "must", start: 13.86, end: 14.2 },
                 { text: "always", start: 14.2, end: 14.66 },
@@ -923,8 +923,8 @@ export const lessonsData = {
           end: 3.5,
           words: [
             { text: "Beth", start: 0.0, end: 0.4 },
-            { text: "and", start: 0.4, end: 0.54 },
-            { text: "Liz", start: 0.54, end: 1.2 },
+            { text: "and", start: 0.4, end: 0.56 },
+            { text: "Liz", start: 0.56, end: 1.2 },
             { text: "learn", start: 1.24, end: 1.38 },
             { text: "about", start: 1.44, end: 1.72 },
             { text: "traffic", start: 1.72, end: 2.14 },
@@ -940,8 +940,8 @@ export const lessonsData = {
             { text: "The", start: 4.2, end: 4.34 },
             { text: "teacher", start: 4.34, end: 4.72 },
             { text: "shows", start: 4.72, end: 5.02 },
-            { text: "Beth", start: 5.02, end: 5.3 },
-            { text: "and", start: 5.3, end: 5.42 },
+            { text: "Beth", start: 5.02, end: 5.28 },
+            { text: "and", start: 5.25, end: 5.45 },
             { text: "Liz", start: 5.42, end: 5.58 },
 
             { text: "a picture", start: 5.62, end: 6.12 },
@@ -1036,7 +1036,7 @@ export const lessonsData = {
           start: 0,
           end: 3.0,
           words: [
-            { text: "The", start: 0.2, end: 0.36 },
+            { text: "The", start: 0.00, end: 0.36 },
             { text: "next", start: 0.36, end: 0.66 },
             { text: "day,", start: 0.66, end: 1.2 },
             { text: "Beth", start: 1.42, end: 1.64 },
@@ -1278,8 +1278,8 @@ export const lessonsData = {
           end: 7.0,
           words: [
             { text: "She", start: 5.18, end: 5.3 },
-            { text: "is", start: 5.3, end: 5.52 },
-            { text: "proud", start: 5.52, end: 5.84 },
+            { text: "is", start: 5.3, end: 5.50 },
+            { text: "proud", start: 5.50, end: 5.84 },
             { text: "of", start: 5.84, end: 5.96 },
             { text: "her", start: 5.98, end: 6.16 },
             { text: "hard", start: 6.16, end: 6.5 },
@@ -1299,7 +1299,7 @@ export const lessonsData = {
             { text: "and", start: 8.38, end: 8.56 },
             { text: "goes", start: 8.56, end: 8.86 },
             { text: "outside", start: 8.86, end: 9.34 },
-            { text: "to play.", start: 9.34, end: 9.52 },
+            { text: "to play.", start: 9.34, end: 10.0 },
           ],
         },
 
@@ -1355,7 +1355,7 @@ export const lessonsData = {
           start: 7.9,
           end: 12.5,
           words: [
-            { text: "and", start: 7.92, end: 8.1 },
+            { text: "and", start: 7.90, end: 8.1 },
             { text: "Beth", start: 8.1, end: 8.44 },
             { text: "knows", start: 8.44, end: 8.8 },
             { text: "exactly", start: 8.8, end: 9.7 },
@@ -1710,7 +1710,7 @@ export const lessonsData = {
               end: 8.74,
               words: [
                 { text: "Do", start: 7.56, end: 7.64 },
-                { text: "you", start: 7.64, end: 7.74 },
+                { text: "you", start: 7.60, end: 7.74 },
                 { text: "wanna", start: 7.74, end: 7.94 },
                 // { text: "to", start: 0.7, end: 0.9 },
                 { text: "ride", start: 7.94, end: 8.16 },
@@ -1837,7 +1837,7 @@ export const lessonsData = {
           start: 0,
           end: 2.3,
           words: [
-            { text: "Leo", start: 0.08, end: 0.5 },
+            { text: "Leo", start: 0.00, end: 0.5 },
             { text: "is", start: 0.5, end: 0.66 },
             { text: "at", start: 0.66, end: 0.8 },
             { text: "his", start: 0.8, end: 0.98 },
@@ -2469,8 +2469,8 @@ export const lessonsData = {
 
         2: [
           { top: "20%", right: "40%", isFlipped: false },
-          { top: "1%", left: "10%", isFlipped: true },
-          { top: "1%", left: "8%", isFlipped: true },
+          { top: "1%", left: "10%", isFlipped: false },
+          { top: "1%", left: "8%", isFlipped: false },
         ],
 
         3: [
