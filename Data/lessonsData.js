@@ -2782,7 +2782,7 @@ export const lessonsData = {
             { text: "basketball", start: 1.54, end: 2.10 },
             { text: "with", start: 2.10, end: 2.20},
             { text: "his", start: 2.20, end: 2.38 },
-            { text: "neighbors.", start: 2.38, end: 2.84 },
+            { text: "neighbours.", start: 2.38, end: 2.84 },
           ],
         },
         {
