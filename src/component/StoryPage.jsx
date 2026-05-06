@@ -1,8 +1,23 @@
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Maximize2, Minimize2 } from 'lucide-react';
-import { lessonsData } from '../../Data/lessonsData.js'; 
-import '../shared/StoryPage.css'; 
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize2,
+  Minimize2,
+} from "lucide-react";
+import { lessonsData } from "../../Data/lessonsData.js";
+import "../shared/StoryPage.css";
 
 export const StoryPage = () => {
   const { unitId, lessonId } = useParams();
@@ -33,17 +48,24 @@ export const StoryPage = () => {
   const videoRef = useRef(null);
   const fullscreenContainerRef = useRef(null);
   const settingsPopupRef = useRef(null);
-  const lesson = useMemo(() => lessonsData[unitId]?.[lessonId], [unitId, lessonId]);
-  const { videos, extraBubblesData, cloudPositions, interactiveTask } = lesson || {};
+  const lesson = useMemo(
+    () => lessonsData[unitId]?.[lessonId],
+    [unitId, lessonId],
+  );
+  const { videos, extraBubblesData, cloudPositions, interactiveTask } =
+    lesson || {};
   const currentVideoData = videos?.[currentVideo];
-  
+
   const activeSubtitleIndex = useMemo(() => {
     if (!currentVideoData?.subtitles) return -1;
-    return currentVideoData.subtitles.findIndex(sub => currentTime >= sub.start && currentTime < sub.end);
+    return currentVideoData.subtitles.findIndex(
+      (sub) => currentTime >= sub.start && currentTime < sub.end,
+    );
   }, [currentTime, currentVideoData]);
 
   const isLastSubtitle = useMemo(() => {
-    if (!currentVideoData?.subtitles || activeSubtitleIndex === -1) return false;
+    if (!currentVideoData?.subtitles || activeSubtitleIndex === -1)
+      return false;
     return activeSubtitleIndex === currentVideoData.subtitles.length - 1;
   }, [activeSubtitleIndex, currentVideoData]);
 
@@ -52,22 +74,46 @@ export const StoryPage = () => {
   }, [currentVideo, interactiveTask]);
 
   if (!lesson || !currentVideoData) {
-    return <div className="story-page-container"><h1>Lesson data not found.</h1></div>;
+    return (
+      <div className="story-page-container">
+        <h1>Lesson data not found.</h1>
+      </div>
+    );
   }
+  useEffect(() => {
+    let rafId;
 
+    const updateTime = () => {
+      if (videoRef.current) {
+        setCurrentTime(videoRef.current.currentTime);
+      }
+      rafId = requestAnimationFrame(updateTime);
+    };
+
+    rafId = requestAnimationFrame(updateTime);
+
+    return () => cancelAnimationFrame(rafId);
+  }, []);
   const handleNext = useCallback(() => {
     if (currentVideo < videos.length - 1) {
-      setCurrentVideo(prev => prev + 1);
+      setCurrentVideo((prev) => prev + 1);
     } else {
       navigate(`/unit/${unitId}/lesson/${lessonId}/quiz`);
     }
     setShowBanner(false);
   }, [currentVideo, videos.length, navigate, unitId, lessonId]);
 
-  const handlePrevious = () => setCurrentVideo(prev => (prev > 0 ? prev - 1 : 0));
-  const togglePlay = () => videoRef.current?.paused ? videoRef.current.play() : videoRef.current?.pause();
-  const toggleFullscreen = () => document.fullscreenElement ? document.exitFullscreen() : fullscreenContainerRef.current?.requestFullscreen();
-  const toggleMute = () => setIsMuted(prev => !prev);
+  const handlePrevious = () =>
+    setCurrentVideo((prev) => (prev > 0 ? prev - 1 : 0));
+  const togglePlay = () =>
+    videoRef.current?.paused
+      ? videoRef.current.play()
+      : videoRef.current?.pause();
+  const toggleFullscreen = () =>
+    document.fullscreenElement
+      ? document.exitFullscreen()
+      : fullscreenContainerRef.current?.requestFullscreen();
+  const toggleMute = () => setIsMuted((prev) => !prev);
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
@@ -90,7 +136,7 @@ export const StoryPage = () => {
     }
     const newWords = [...new Set([...selectedWords, cleanWord])];
     setSelectedWords(newWords);
-    if (interactiveTask.correctWords.every(cw => newWords.includes(cw))) {
+    if (interactiveTask.correctWords.every((cw) => newWords.includes(cw))) {
       setShowFeedback(true);
       setTimeout(() => {
         setShowFeedback(false);
@@ -133,20 +179,20 @@ export const StoryPage = () => {
     const onTimeUpdate = () => setCurrentTime(video.currentTime);
     const onLoadedData = () => {
       setDuration(video.duration);
-      setIsLoading(false); 
+      setIsLoading(false);
     };
-    
+
     setIsLoading(true);
 
-    video.addEventListener('play', onPlay);
-    video.addEventListener('pause', onPause);
-    video.addEventListener('timeupdate', onTimeUpdate);
-    video.addEventListener('loadeddata', onLoadedData);
+    video.addEventListener("play", onPlay);
+    video.addEventListener("pause", onPause);
+    video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("loadeddata", onLoadedData);
     return () => {
-      video.removeEventListener('play', onPlay);
-      video.removeEventListener('pause', onPause);
-      video.removeEventListener('timeupdate', onTimeUpdate);
-      video.removeEventListener('loadeddata', onLoadedData);
+      video.removeEventListener("play", onPlay);
+      video.removeEventListener("pause", onPause);
+      video.removeEventListener("timeupdate", onTimeUpdate);
+      video.removeEventListener("loadeddata", onLoadedData);
     };
   }, [currentVideoData.url]);
 
@@ -159,27 +205,42 @@ export const StoryPage = () => {
   }, [isMuted, volume, playbackSpeed]);
 
   useEffect(() => {
-    const bubble = extraBubblesData?.find(b => b.videoIndex === currentVideo && currentTime >= b.start && currentTime < b.end);
+    const bubble = extraBubblesData?.find(
+      (b) =>
+        b.videoIndex === currentVideo &&
+        currentTime >= b.start &&
+        currentTime < b.end,
+    );
     setExtraBubble(bubble || null);
   }, [currentTime, currentVideo, extraBubblesData]);
 
   useEffect(() => {
-    const handleFullscreenChange = () => setIsFullscreen(!!document.fullscreenElement);
+    const handleFullscreenChange = () =>
+      setIsFullscreen(!!document.fullscreenElement);
     const handleClickOutside = (event) => {
-      if (settingsPopupRef.current && !settingsPopupRef.current.contains(event.target)) {
+      if (
+        settingsPopupRef.current &&
+        !settingsPopupRef.current.contains(event.target)
+      ) {
         setShowSettingsPopup(false);
       }
     };
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  const activeSubtitle = useMemo(() => activeSubtitleIndex !== -1 ? currentVideoData.subtitles[activeSubtitleIndex] : null, [activeSubtitleIndex, currentVideoData.subtitles]);
-  
+  const activeSubtitle = useMemo(
+    () =>
+      activeSubtitleIndex !== -1
+        ? currentVideoData.subtitles[activeSubtitleIndex]
+        : null,
+    [activeSubtitleIndex, currentVideoData.subtitles],
+  );
+
   const bubbleStyle = useMemo(() => {
     return cloudPositions?.[currentVideo]?.[activeSubtitleIndex] || {};
   }, [activeSubtitleIndex, currentVideo, cloudPositions]);
@@ -195,18 +256,22 @@ export const StoryPage = () => {
         <video
           ref={videoRef}
           key={currentVideoData.url}
-          className={`w-full h-full object-cover ${isFullscreen ? 'fixed inset-0' : 'aspect-video'}`}
+          className={`w-full h-full object-cover ${isFullscreen ? "fixed inset-0" : "aspect-video"}`}
           onEnded={handleEnded}
           preload="auto"
           src={currentVideoData.url}
         />
 
-        {showWrongFeedback && <div className="wrong-feedback">Try Again! ❌</div>}
+        {showWrongFeedback && (
+          <div className="wrong-feedback">Try Again! ❌</div>
+        )}
         {showFeedback && <div className="feedback-popup">Good Job! 👍</div>}
         {showBanner && isInteractiveVideo && (
-          <div className={`instruction-banner show ${isFullscreen ? 'fullscreen-banner' : ''}`}>
+          <div
+            className={`instruction-banner show ${isFullscreen ? "fullscreen-banner" : ""}`}
+          >
             {interactiveTask.instruction.map((line, index) => (
-              <p key={index} style={{ fontSize: '1.8em', textAlign: 'left' }}>
+              <p key={index} style={{ fontSize: "1.8em", textAlign: "left" }}>
                 {line}
               </p>
             ))}
@@ -223,8 +288,18 @@ export const StoryPage = () => {
             >
               <p>
                 {activeSubtitle.words.map((word, index) => (
-                  <span key={index} onClick={() => handleWordClick(word.text)} className={`word-span ${textHighlight && currentTime >= word.start && currentTime < word.end ? 'active-word' : ''} ${selectedWords.includes(word.text.toLowerCase().replace(/[.,?!]/g, "")) ? 'selected-word' : ''}`}>
-                    {word.text}{' '}
+                  <span
+                    key={index}
+                    onClick={() => handleWordClick(word.text)}
+                    className={`word-span ${
+  textHighlight &&
+  currentTime >= word.start - 0.05 &&
+  currentTime < word.end + 0.05
+    ? "active-word"
+    : ""
+}${selectedWords.includes(word.text.toLowerCase().replace(/[.,?!]/g, "")) ? "selected-word" : ""}`}
+                  >
+                    {word.text}{" "}
                   </span>
                 ))}
               </p>
@@ -233,47 +308,49 @@ export const StoryPage = () => {
         )}
 
         {showCaption && extraBubble && (
-  <div
-    className="subtitle-container"
-    style={{
-      bottom: '0%',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      zIndex: 101
-    }}
-  >
-    <div className="extra-cloud">
-      <p
-        style={{
-          fontSize: extraBubble.fontSize
-            ? `${extraBubble.fontSize}px`
-            : "1.6rem"
-        }}
-      >
-        {extraBubble.words.map((word, index) => (
-          <span
-            key={index}
-            className={`word-span ${
-              narrationHighlight &&
-              currentTime >= word.start &&
-              currentTime < word.end
-                ? 'active-word'
-                : ''
-            }`}
+          <div
+            className="subtitle-container"
+            style={{
+              bottom: "0%",
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 101,
+            }}
           >
-            {word.text}{' '}
-          </span>
-        ))}
-      </p>
-    </div>
-  </div>
-)}
-
+            <div className="extra-cloud">
+              <p
+                style={{
+                  fontSize: extraBubble.fontSize
+                    ? `${extraBubble.fontSize}px`
+                    : "1.6rem",
+                }}
+              >
+                {extraBubble.words.map((word, index) => (
+                  <span
+                    key={index}
+                    className={`word-span  ${
+  narrationHighlight &&
+  currentTime >= word.start - 0.05 &&
+  currentTime < word.end + 0.05
+    ? "active-word"
+    : ""
+}`}
+                  >
+                    {word.text}{" "}
+                  </span>
+                ))}
+              </p>
+            </div>
+          </div>
+        )}
 
         <div className="video-overlay" />
         <div className="controls-container">
           <div className="controlbbtn">
-            <button onClick={handlePrevious} className="control-btn left-nav-btn">
+            <button
+              onClick={handlePrevious}
+              className="control-btn left-nav-btn"
+            >
               <ChevronLeft className="w-8 h-8" />
             </button>
             <button onClick={handleNext} className="control-btn right-nav-btn">
@@ -284,45 +361,180 @@ export const StoryPage = () => {
             <div className="controls-row">
               <div className="controls-group-left">
                 <div className="settings-container">
-                  <button onClick={() => setShowSettingsPopup(p => !p)} className="control-btn settings-btn" title="Settings">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                  <button
+                    onClick={() => setShowSettingsPopup((p) => !p)}
+                    className="control-btn settings-btn"
+                    title="Settings"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
                   </button>
                   {showSettingsPopup && (
                     <div className="settings-popup-container">
                       <div ref={settingsPopupRef} className="settings-popup">
-                        <button onClick={() => setShowSettingsPopup(false)} className="close-popup-btn">×</button>
+                        <button
+                          onClick={() => setShowSettingsPopup(false)}
+                          className="close-popup-btn"
+                        >
+                          ×
+                        </button>
                         <h3>Settings</h3>
                         <div className="settings-options-grid">
-                          <div className="setting-item"><span className="setting-label">Conversation Caption</span><label className="toggle-switch"><input type="checkbox" checked={showSubtitles} onChange={() => setShowSubtitles(p => !p)} /><span className="toggle-slider"></span></label></div>
-                          <div className="setting-item"><span className="setting-label">Text Highlight</span><label className="toggle-switch"><input type="checkbox" checked={textHighlight} onChange={() => setTextHighlight(p => !p)} /><span className="toggle-slider"></span></label></div>
-                          <div className="setting-item"><span className="setting-label">Narration</span><label className="toggle-switch"><input type="checkbox" checked={showCaption} onChange={() => setShowCaption(p => !p)} /><span className="toggle-slider"></span></label></div>
-                          <div className="setting-item"><span className="setting-label">Narration Highlight</span><label className="toggle-switch"><input type="checkbox" checked={narrationHighlight} onChange={() => setNarrationHighlight(p => !p)} /><span className="toggle-slider"></span></label></div>
-                          <div className="setting-item"><span className="setting-label">Auto Page Turn</span><label className="toggle-switch"><input type="checkbox" checked={autoPlayNext} onChange={() => setAutoPlayNext(p => !p)} /><span className="toggle-slider"></span></label></div>
+                          <div className="setting-item">
+                            <span className="setting-label">
+                              Conversation Caption
+                            </span>
+                            <label className="toggle-switch">
+                              <input
+                                type="checkbox"
+                                checked={showSubtitles}
+                                onChange={() => setShowSubtitles((p) => !p)}
+                              />
+                              <span className="toggle-slider"></span>
+                            </label>
+                          </div>
+                          <div className="setting-item">
+                            <span className="setting-label">
+                              Text Highlight
+                            </span>
+                            <label className="toggle-switch">
+                              <input
+                                type="checkbox"
+                                checked={textHighlight}
+                                onChange={() => setTextHighlight((p) => !p)}
+                              />
+                              <span className="toggle-slider"></span>
+                            </label>
+                          </div>
+                          <div className="setting-item">
+                            <span className="setting-label">Narration</span>
+                            <label className="toggle-switch">
+                              <input
+                                type="checkbox"
+                                checked={showCaption}
+                                onChange={() => setShowCaption((p) => !p)}
+                              />
+                              <span className="toggle-slider"></span>
+                            </label>
+                          </div>
+                          <div className="setting-item">
+                            <span className="setting-label">
+                              Narration Highlight
+                            </span>
+                            <label className="toggle-switch">
+                              <input
+                                type="checkbox"
+                                checked={narrationHighlight}
+                                onChange={() =>
+                                  setNarrationHighlight((p) => !p)
+                                }
+                              />
+                              <span className="toggle-slider"></span>
+                            </label>
+                          </div>
+                          <div className="setting-item">
+                            <span className="setting-label">
+                              Auto Page Turn
+                            </span>
+                            <label className="toggle-switch">
+                              <input
+                                type="checkbox"
+                                checked={autoPlayNext}
+                                onChange={() => setAutoPlayNext((p) => !p)}
+                              />
+                              <span className="toggle-slider"></span>
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
                   )}
                 </div>
-                <div className="volume-control" onMouseEnter={() => setShowVolumeSlider(true)} onMouseLeave={() => setShowVolumeSlider(false)}>
-                  <button onClick={toggleMute} className="control-btn">{isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}</button>
-                  {showVolumeSlider && <div className="volume-slider-container"><input type="range" min="0" max="1" step="0.1" value={isMuted ? 0 : volume} onChange={handleVolumeChange} className="volume-slider" orient="vertical" /></div>}
+                <div
+                  className="volume-control"
+                  onMouseEnter={() => setShowVolumeSlider(true)}
+                  onMouseLeave={() => setShowVolumeSlider(false)}
+                >
+                  <button onClick={toggleMute} className="control-btn">
+                    {isMuted ? (
+                      <VolumeX className="w-6 h-6" />
+                    ) : (
+                      <Volume2 className="w-6 h-6" />
+                    )}
+                  </button>
+                  {showVolumeSlider && (
+                    <div className="volume-slider-container">
+                      <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.1"
+                        value={isMuted ? 0 : volume}
+                        onChange={handleVolumeChange}
+                        className="volume-slider"
+                        orient="vertical"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="speed-control-container">
-                  <button onClick={() => setShowSpeedMenu(p => !p)} className="control-btn speed-btn" title="Playback Speed"><span className="speed-label">{playbackSpeed}x</span></button>
-                  {showSpeedMenu && <ul className="speed-dropdown-list">{availableSpeeds.map(s => <li key={s} onClick={() => selectPlaybackSpeed(s)} className={playbackSpeed === s ? 'active-speed' : ''}>{s}x</li>)}</ul>}
+                  <button
+                    onClick={() => setShowSpeedMenu((p) => !p)}
+                    className="control-btn speed-btn"
+                    title="Playback Speed"
+                  >
+                    <span className="speed-label">{playbackSpeed}x</span>
+                  </button>
+                  {showSpeedMenu && (
+                    <ul className="speed-dropdown-list">
+                      {availableSpeeds.map((s) => (
+                        <li
+                          key={s}
+                          onClick={() => selectPlaybackSpeed(s)}
+                          className={playbackSpeed === s ? "active-speed" : ""}
+                        >
+                          {s}x
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
               <div className="controls-group-center">
-                <button onClick={togglePlay} className="control-btn play-btn">{isPlaying ? <Pause className="w-12 h-12" fill="white" /> : <Play className="w-12 h-12" fill="white" />}</button>
+                <button onClick={togglePlay} className="control-btn play-btn">
+                  {isPlaying ? (
+                    <Pause className="w-12 h-12" fill="white" />
+                  ) : (
+                    <Play className="w-12 h-12" fill="white" />
+                  )}
+                </button>
               </div>
               <div className="controls-group-right">
-                <button onClick={toggleFullscreen} className="control-btn">{isFullscreen ? <Minimize2 className="w-6 h-6" /> : <Maximize2 className="w-6 h-6" />}</button>
+                <button onClick={toggleFullscreen} className="control-btn">
+                  {isFullscreen ? (
+                    <Minimize2 className="w-6 h-6" />
+                  ) : (
+                    <Maximize2 className="w-6 h-6" />
+                  )}
+                </button>
               </div>
             </div>
           </div>
         </div>
         <div className="progress-indicator-container">
-          {videos.map((_, index) => <div key={index} className={`progress-dot ${index === currentVideo ? 'active' : ''}`} />)}
+          {videos.map((_, index) => (
+            <div
+              key={index}
+              className={`progress-dot ${index === currentVideo ? "active" : ""}`}
+            />
+          ))}
         </div>
       </div>
     </div>
